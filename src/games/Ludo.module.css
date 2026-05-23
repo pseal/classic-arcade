@@ -1,0 +1,64 @@
+.container { text-align: center; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.side {
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+}
+
+.sideLabel { font-weight: 700; margin-bottom: 6px; font-size: 13px; }
+
+.tokenRow {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 8px;
+}
+
+.tokenWrap { text-align: center; }
+
+.token {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  border: 3px solid rgba(255,255,255,0.3);
+  color: #fff;
+  transition: box-shadow 0.3s, opacity 0.3s;
+}
+
+.tokenLabel { font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 3px; }
+
+.diceArea {
+  height: 64px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.dice { font-size: 52px; }
+
+.controls {
+  display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+}
+
+.rollBtn {
+  background: linear-gradient(135deg, #6c63ff, #a855f7);
+  color: #fff; border: none; border-radius: 8px;
+  padding: 8px 20px; font-size: 14px; font-weight: 600;
+  transition: opacity 0.2s;
+}
+.rollBtn:hover:not(:disabled) { opacity: 0.88; }
+
+.resetBtn {
+  background: rgba(255,255,255,0.1); color: #e8e8f0;
+  border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
+  padding: 8px 20px; font-size: 14px; font-weight: 600;
+  transition: background 0.2s;
+}
+.resetBtn:hover { background: rgba(255,255,255,0.18); }
+
+.hint { margin-top: 10px; font-size: 12px; color: rgba(255,255,255,0.3); }

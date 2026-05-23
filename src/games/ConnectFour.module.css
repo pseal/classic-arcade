@@ -1,0 +1,55 @@
+.container { text-align: center; }
+
+.scores {
+  display: flex; justify-content: center; gap: 32px; margin-bottom: 8px;
+}
+.scoreItem { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+
+.board {
+  display: inline-block;
+  background: #1e3a5f;
+  border-radius: 12px;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+.arrows {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.arrow {
+  width: 48px; height: 28px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.arrowDisk {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #3b82f6;
+  opacity: 0.7;
+}
+
+.row { display: flex; gap: 4px; margin-bottom: 4px; }
+
+.cell {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.resetBtn {
+  background: rgba(255,255,255,0.1);
+  color: #e8e8f0;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 14px; font-weight: 600;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+.resetBtn:hover { background: rgba(255,255,255,0.18); }

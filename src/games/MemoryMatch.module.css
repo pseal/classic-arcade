@@ -1,0 +1,48 @@
+.container { text-align: center; }
+
+.stats {
+  display: flex; justify-content: center; gap: 32px; margin-bottom: 8px;
+}
+.stats > div { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.statVal   { font-size: 24px; font-weight: 900; }
+.statLabel { font-size: 11px; color: rgba(255,255,255,0.45); }
+
+.grid {
+  display: grid;
+  gap: 8px;
+  max-width: 440px;
+  margin: 0 auto 16px;
+}
+
+.card {
+  height: 64px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: font-size 0.2s, background 0.2s, border-color 0.2s;
+  user-select: none;
+}
+
+.cardFlipped {
+  font-size: 28px;
+  background: rgba(236,72,153,0.15);
+  border-color: rgba(236,72,153,0.5);
+}
+
+.cardMatched {
+  font-size: 28px;
+  background: rgba(236,72,153,0.2);
+  border-color: #ec4899;
+  cursor: default;
+}
+
+.resetBtn {
+  background: rgba(255,255,255,0.1); color: #e8e8f0;
+  border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
+  padding: 8px 20px; font-size: 14px; font-weight: 600;
+  transition: background 0.2s;
+}
+.resetBtn:hover { background: rgba(255,255,255,0.18); }
