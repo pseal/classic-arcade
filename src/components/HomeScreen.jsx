@@ -7,7 +7,7 @@ const BADGES = {
   c4:       { label: 'Puzzle',   color: '#3b82f6' },
   snakes:   { label: 'Luck',     color: '#10b981' },
   ludo:     { label: '4 Player', color: '#ef4444' },
-  memory:   { label: 'Memory',   color: '#ec4899' },
+  cc:       { label: 'Strategy', color: '#ec4899' },
   uno:      { label: 'Cards',    color: '#f97316' },
   mahjong:  { label: 'Tiles',    color: '#a855f7' },
   solitaire:{ label: 'Classic',  color: '#14b8a6' },
@@ -33,8 +33,7 @@ export default function HomeScreen({ onSelect }) {
         {GAMES.map(g => {
           const badge = BADGES[g.id] || { label: 'Game', color: g.color }
           return (
-            <div key={g.id} className={styles.card} onClick={() => onSelect(g.id)}
-              style={{ '--card-color': g.color }}>
+            <div key={g.id} className={styles.card} onClick={() => onSelect(g.id)}>
               <div className={styles.cardShine} />
               <div className={styles.cardTop}>
                 <div className={styles.cardIcon} style={{ boxShadow: `0 0 20px ${g.color}33` }}>

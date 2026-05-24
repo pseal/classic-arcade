@@ -48,3 +48,8 @@ button:disabled { opacity: 0.35; cursor: not-allowed; }
 
 .glow-purple { box-shadow: 0 0 24px rgba(108,99,255,0.4); }
 .glow-amber  { box-shadow: 0 0 24px rgba(245,158,11,0.4); }
+
+/* Fullscreen background */
+:fullscreen { background: #07071a; }
+:-webkit-full-screen { background: #07071a; }
+:-moz-full-screen { background: #07071a; }
