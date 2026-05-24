@@ -213,14 +213,16 @@ function ColorPicker({ onPick }) {
   return (
     <div className={styles.pickerWrap}>
       <div className={styles.pickerIcon}>🎯</div>
-      <h2 className={styles.pickerTitle}>Choose Your Color</h2>
-      <p className={styles.pickerSub}>You'll play against the CPU</p>
+      <h2 className={styles.pickerTitle}>Pick Your Color</h2>
+      <p className={styles.pickerSub}>You vs 3 CPU opponents — may the best player win!</p>
       <div className={styles.colorGrid}>
         {COLORS.map(c => (
           <button key={c} className={styles.colorBtn}
-            style={{ background: COLOR_META[c].hex, boxShadow: `0 4px 20px ${COLOR_META[c].hex}66` }}
+            style={{ borderColor: `${COLOR_META[c].hex}55`, boxShadow: `0 8px 28px ${COLOR_META[c].hex}33` }}
             onClick={() => onPick(c)}>
+            <div className={styles.colorBtnDot} style={{ background: COLOR_META[c].hex, boxShadow: `0 0 14px ${COLOR_META[c].hex}` }} />
             <span className={styles.colorBtnLabel}>{COLOR_META[c].label}</span>
+            <span className={styles.colorBtnYou}>Play as this</span>
           </button>
         ))}
       </div>
@@ -389,11 +391,16 @@ export default function Ludo({ diff = 'medium' }) {
     <div className={styles.container}>
       {/* Header */}
       <div className={styles.header}>
-        <div className={styles.turnIndicators}>
+        <div className={styles.turnBar}>
           {COLORS.map(c => (
-            <div key={c} className={`${styles.turnDot} ${turn === c ? styles.turnDotActive : ''}`}
-              style={{ background: COLOR_META[c].hex, opacity: turn === c ? 1 : 0.3 }}>
-              {c === playerColor ? '🧑' : '🤖'}
+            <div key={c} className={`${styles.turnChip} ${turn === c ? styles.turnChipActive : ''}`}
+              style={{
+                borderColor: turn === c ? `${COLOR_META[c].hex}88` : 'rgba(255,255,255,0.06)',
+                background: turn === c ? `${COLOR_META[c].hex}18` : 'rgba(255,255,255,0.03)',
+                color: turn === c ? COLOR_META[c].hex : 'rgba(255,255,255,0.3)',
+              }}>
+              <div className={styles.turnChipDot} style={{ background: COLOR_META[c].hex, opacity: turn === c ? 1 : 0.3 }} />
+              {c === playerColor ? '🧑' : '🤖'} {COLOR_META[c].label}
             </div>
           ))}
         </div>
@@ -402,6 +409,7 @@ export default function Ludo({ diff = 'medium' }) {
 
       {/* Board */}
       <div className={styles.boardWrap}>
+        <div className={styles.boardOuter}>
         <div className={styles.board}>
           {Array(15).fill(0).map((_, r) => (
             <div key={r} className={styles.boardRow}>
@@ -466,7 +474,7 @@ export default function Ludo({ diff = 'medium' }) {
                 return (
                   <div key={c} className={styles.cell} style={{ background: bg }}>
                     {isSafe && cellTokens.length === 0 && <span className={styles.star}>☆</span>}
-                    {arrowChar && cellTokens.length === 0 && <span className={styles.arrow}>{arrowChar}</span>}
+                    {arrowChar && cellTokens.length === 0 && <span className={styles.arrowCell}>{arrowChar}</span>}
                     {r === 7 && c === 7 && <span className={styles.centerStar}>⭐</span>}
                     {cellTokens.map(({ color, tokenIdx, pos }) => {
                       const isValid = color === playerColor && validMoves.includes(tokenIdx)
@@ -494,10 +502,11 @@ export default function Ludo({ diff = 'medium' }) {
           ))}
         </div>
       </div>
+        </div>
 
       {/* Controls */}
       <div className={styles.controls}>
-        <div className={styles.diceArea}>
+        <div className={styles.diceWrap}>
           {roll && <span className={styles.dice}>{DICE_FACES[roll - 1]}</span>}
         </div>
         <div className={styles.btnRow}>
@@ -508,7 +517,7 @@ export default function Ludo({ diff = 'medium' }) {
               Roll Dice 🎲
             </button>
           )}
-          <button className={styles.resetBtn} onClick={reset}>Change Color</button>
+          <button className={styles.changeBtn} onClick={reset}>Change Color</button>
         </div>
       </div>
 
@@ -521,7 +530,7 @@ export default function Ludo({ diff = 'medium' }) {
       {winner && (
         <div className={styles.winOverlay}>
           <div className={styles.winBox}>
-            <div style={{ fontSize: 56 }}>{winner === playerColor ? '🎉' : '🤖'}</div>
+            <div className={styles.winEmoji}>{winner === playerColor ? '🎉' : '🤖'}</div>
             <h2 style={{ color: COLOR_META[winner].hex }}>
               {winner === playerColor ? 'You Win!' : `${COLOR_META[winner].label} CPU Wins!`}
             </h2>

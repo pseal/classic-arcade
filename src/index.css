@@ -1,16 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-deep:    #07071a;
+  --bg-card:    rgba(255,255,255,0.04);
+  --bg-glass:   rgba(255,255,255,0.07);
+  --border:     rgba(255,255,255,0.08);
+  --border-hi:  rgba(255,255,255,0.18);
+  --text:       #f0f0fa;
+  --text-muted: rgba(255,255,255,0.4);
+  --radius-lg:  20px;
+  --radius-md:  12px;
+  --radius-sm:  8px;
+  --shadow-glow: 0 0 40px rgba(108,99,255,0.15);
+}
 
 html, body {
   min-height: 100vh;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  background: #0f0f1a;
-  color: #e8e8f0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg-deep);
+  color: var(--text);
   overflow-x: hidden;
 }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #1a1a2e; }
-::-webkit-scrollbar-thumb { background: #444466; border-radius: 3px; }
+body {
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(108,99,255,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 110%, rgba(168,85,247,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(14,165,233,0.05) 0%, transparent 70%);
+  background-attachment: fixed;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 99px; }
 
 button { font-family: inherit; cursor: pointer; }
-button:disabled { opacity: 0.4; cursor: not-allowed; }
+button:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* Shared utility classes */
+.glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+}
+
+.glow-purple { box-shadow: 0 0 24px rgba(108,99,255,0.4); }
+.glow-amber  { box-shadow: 0 0 24px rgba(245,158,11,0.4); }

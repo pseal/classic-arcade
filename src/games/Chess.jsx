@@ -2,8 +2,9 @@ import { useState } from 'react'
 import StatusBar from '../components/StatusBar'
 import styles from './Chess.module.css'
 
+// Use solid (filled) symbols for both colors — white pieces get white fill + black stroke via CSS
 const UNICODE = {
-  wK:'♔',wQ:'♕',wR:'♖',wB:'♗',wN:'♘',wP:'♙',
+  wK:'♚',wQ:'♛',wR:'♜',wB:'♝',wN:'♞',wP:'♟',
   bK:'♚',bQ:'♛',bR:'♜',bB:'♝',bN:'♞',bP:'♟',
 }
 
@@ -203,7 +204,19 @@ export default function Chess({ diff }) {
                     onClick={() => handleSquare(r, c)}
                   >
                     {piece && (
-                      <span className={styles.piece} style={{ filter: piece[0] === 'w' ? 'drop-shadow(0 1px 1px rgba(0,0,0,0.6))' : 'none' }}>
+                      <span
+                        className={styles.piece}
+                        style={piece[0] === 'w' ? {
+                          color: '#fff',
+                          WebkitTextStroke: '1.5px #1a1a1a',
+                          paintOrder: 'stroke fill',
+                          filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))',
+                        } : {
+                          color: '#1a1a1a',
+                          WebkitTextStroke: '0.5px #000',
+                          filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))',
+                        }}
+                      >
                         {UNICODE[piece]}
                       </span>
                     )}

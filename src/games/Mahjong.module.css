@@ -1,0 +1,86 @@
+.container {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 12px; position: relative;
+}
+
+.statsRow {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; gap: 12px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px; padding: 10px 16px;
+}
+.stat { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 52px; }
+.statN { font-size: 22px; font-weight: 900; color: #a78bfa; font-family: 'Space Grotesk', sans-serif; }
+.statL { font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.5px; }
+.statMsg { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.55); text-align: center; flex: 1; }
+
+.boardWrap { overflow: auto; width: 100%; }
+
+.board { position: relative; margin: 0 auto; }
+
+/* ── Tile ── */
+.tile {
+  position: absolute;
+  width: 42px; height: 50px;
+  border-radius: 8px;
+  border: 1px solid;
+  background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.04));
+  transition: transform 0.15s, box-shadow 0.15s;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.tileFree { cursor: pointer; }
+.tileFree:hover { transform: translateY(-2px) scale(1.05); }
+
+.tileBlocked { cursor: default; opacity: 0.6; }
+
+.tileSelected { transform: translateY(-4px) scale(1.08) !important; }
+
+.tileInner {
+  width: 34px; height: 42px;
+  border-radius: 5px; border: 1px solid;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.tileChar { font-size: 13px; font-weight: 700; line-height: 1; text-align: center; }
+
+/* ── Controls ── */
+.controls { display: flex; gap: 10px; }
+
+.hintBtn {
+  background: rgba(245,158,11,0.15);
+  color: #f59e0b; border: 1px solid rgba(245,158,11,0.3);
+  border-radius: 12px; padding: 9px 20px;
+  font-size: 13px; font-weight: 700;
+  transition: all 0.2s; cursor: pointer;
+}
+.hintBtn:hover { background: rgba(245,158,11,0.25); transform: translateY(-1px); }
+
+.resetBtn {
+  background: linear-gradient(135deg, #6c63ff, #a855f7);
+  color: #fff; border: none; border-radius: 12px;
+  padding: 9px 22px; font-size: 13px; font-weight: 700;
+  transition: all 0.2s; cursor: pointer;
+}
+.resetBtn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* ── Win ── */
+.winOverlay {
+  position: absolute; inset: 0;
+  background: rgba(7,7,26,0.88); backdrop-filter: blur(10px);
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 20px; z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.winBox {
+  background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255,255,255,0.18); border-radius: 24px;
+  padding: 32px 44px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  animation: winBounce 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes winBounce { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.winBox h2  { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 800; }
+.winEmoji   { font-size: 52px; animation: float 1.5s ease-in-out infinite alternate; }
+@keyframes float { from { transform: translateY(0); } to { transform: translateY(-8px); } }

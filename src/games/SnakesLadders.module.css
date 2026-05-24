@@ -1,73 +1,119 @@
 .container { text-align: center; }
 
 .positions {
-  display: flex; gap: 16px; justify-content: center; margin-bottom: 10px; flex-wrap: wrap;
+  display: flex; gap: 0; justify-content: center; margin-bottom: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px; overflow: hidden;
 }
+
 .posCard {
-  border: 1px solid; border-radius: 10px; padding: 8px 16px; font-size: 14px;
+  flex: 1;
+  padding: 12px 20px; font-size: 14px; font-weight: 600;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.posCard:last-child { border-right: none; }
+
+.posNum {
+  font-size: 22px; font-weight: 900;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .scrollWrap { overflow-x: auto; margin-bottom: 10px; }
 
 .board {
   display: grid;
-  grid-template-columns: repeat(10, 44px);
-  gap: 2px;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 3px;
   margin: 0 auto;
   width: fit-content;
+  padding: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
 }
 
 .cell {
-  width: 44px; height: 44px;
-  border-radius: 6px;
-  border: 1px solid;
+  width: 46px; height: 46px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.07);
   display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
   position: relative;
   cursor: default;
+  font-size: 18px;
+  transition: transform 0.15s;
+  background: rgba(255,255,255,0.04);
 }
 
 .cellNum {
   position: absolute;
-  top: 2px; left: 3px;
+  top: 2px; left: 4px;
   font-size: 8px;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.3);
   font-weight: 700;
 }
 
-.tokens { display: flex; gap: 2px; }
+.tokens { display: flex; gap: 2px; align-items: center; justify-content: center; }
 
-.tokenP, .tokenC {
-  width: 16px; height: 16px;
+.tokenP {
+  width: 18px; height: 18px;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 9px; font-weight: 700; color: #fff;
+  font-size: 9px; font-weight: 800; color: #fff;
+  background: #6c63ff;
+  box-shadow: 0 0 8px rgba(108,99,255,0.6);
 }
-.tokenP { background: #6c63ff; }
-.tokenC { background: #ef4444; }
+.tokenC {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 800; color: #fff;
+  background: #ef4444;
+  box-shadow: 0 0 8px rgba(239,68,68,0.6);
+}
 
 .controls {
-  display: flex; gap: 10px; justify-content: center; align-items: center;
-  margin-bottom: 10px; flex-wrap: wrap;
+  display: flex; gap: 12px; justify-content: center;
+  align-items: center; margin-bottom: 10px; flex-wrap: wrap;
 }
 
-.dice { font-size: 44px; }
+.dice {
+  font-size: 52px;
+  filter: drop-shadow(0 0 12px rgba(255,255,255,0.2));
+  animation: diceRoll 0.3s ease;
+}
+
+@keyframes diceRoll {
+  0%   { transform: rotate(0deg) scale(0.8); }
+  50%  { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
 
 .rollBtn {
-  background: linear-gradient(135deg, #6c63ff, #a855f7);
-  color: #fff; border: none; border-radius: 8px;
-  padding: 8px 20px; font-size: 14px; font-weight: 600;
-  transition: opacity 0.2s;
+  color: #fff; border: none; border-radius: 14px;
+  padding: 12px 28px; font-size: 15px; font-weight: 700;
+  letter-spacing: 0.2px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(108,99,255,0.3);
 }
-.rollBtn:hover:not(:disabled) { opacity: 0.88; }
+.rollBtn:hover:not(:disabled) { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(108,99,255,0.45); }
 
 .resetBtn {
-  background: rgba(255,255,255,0.1); color: #e8e8f0;
-  border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
-  padding: 8px 20px; font-size: 14px; font-weight: 600;
-  transition: background 0.2s;
+  background: rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 12px 22px; font-size: 14px; font-weight: 600;
+  transition: all 0.2s;
 }
-.resetBtn:hover { background: rgba(255,255,255,0.18); }
+.resetBtn:hover { background: rgba(255,255,255,0.12); color: #fff; transform: translateY(-1px); }
 
-.log { text-align: left; padding: 0 8px; }
-.logLine { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 2px; }
+.log { padding: 0 4px; }
+.logLine {
+  font-size: 12px; color: rgba(255,255,255,0.35);
+  text-align: center; margin-bottom: 3px;
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 6px;
+}
