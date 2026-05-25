@@ -21,52 +21,63 @@ const GAME_MAP = {
 const NO_DIFF = new Set(['mahjong', 'solitaire'])
 
 export default function GameModal({ gameId, onClose }) {
-  const [diff, setDiff]   = useState('medium')
-  const [isFS, setIsFS]   = useState(false)
-  const containerRef      = useRef(null)
-  const game              = GAMES.find(g => g.id === gameId)
-  const GameComponent     = GAME_MAP[gameId]
+  const [diff, setDiff] = useState('medium')
+  const [isFS, setIsFS] = useState(false)
+  const containerRef    = useRef(null)
+  const game            = GAMES.find(g => g.id === gameId)
+  const GameComponent   = GAME_MAP[gameId]
 
-  const toggleFullscreen = useCallback(() => {
+  const toggleFS = useCallback(() => {
     if (!document.fullscreenElement) containerRef.current?.requestFullscreen()
     else document.exitFullscreen()
   }, [])
 
   useEffect(() => {
-    const onChange = () => setIsFS(!!document.fullscreenElement)
-    document.addEventListener('fullscreenchange', onChange)
-    return () => document.removeEventListener('fullscreenchange', onChange)
+    const cb = () => setIsFS(!!document.fullscreenElement)
+    document.addEventListener('fullscreenchange', cb)
+    return () => document.removeEventListener('fullscreenchange', cb)
   }, [])
 
   useEffect(() => {
-    const onKey = (e) => { if (e.key === 'Escape' && !document.fullscreenElement) onClose() }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    const cb = (e) => { if (e.key === 'Escape' && !document.fullscreenElement) onClose() }
+    window.addEventListener('keydown', cb)
+    return () => window.removeEventListener('keydown', cb)
   }, [onClose])
 
   return (
-    <div ref={containerRef}
+    <div
+      ref={containerRef}
       className={`${styles.overlay} ${isFS ? styles.overlayFS : ''}`}
-      onClick={e => { if (e.target === e.currentTarget && !isFS) onClose() }}>
-      <div className={`${styles.modal} ${isFS ? styles.modalFS : ''}`}>
-        <div className={styles.modalHeader}>
-          <div className={styles.modalTitle}>
-            <div className={styles.modalIconWrap} style={{ boxShadow: `0 0 16px ${game?.color}44` }}>
-              {game?.icon}
+      onClick={e => { if (e.target === e.currentTarget && !isFS) onClose() }}
+    >
+      <div className={`${styles.modal} ${isFS ? styles.modalFS : ''}`}
+        style={{ '--game-color': game?.color }}>
+        <div className={`${styles.modalInner} ${isFS ? styles.modalInnerFS : ''}`}>
+          <div className={styles.modalHeader}>
+            <div className={styles.modalTitle}>
+              <div className={styles.modalIconWrap}
+                style={{ boxShadow: `0 0 20px ${game?.color}40, inset 0 0 0 1px ${game?.color}20` }}>
+                {game?.icon}
+              </div>
+              <h2 style={{ color: game?.color }}>{game?.name}</h2>
             </div>
-            <h2 style={{ color: game?.color }}>{game?.name}</h2>
+            <div className={styles.headerActions}>
+              <button className={styles.fsBtn} onClick={toggleFS}>
+                {isFS ? '⛶ Exit' : '⛶ Fullscreen'}
+              </button>
+              {!isFS && <button className={styles.closeBtn} onClick={onClose}>✕ Close</button>}
+            </div>
           </div>
-          <div className={styles.headerActions}>
-            <button className={styles.fsBtn} onClick={toggleFullscreen} title={isFS ? 'Exit fullscreen' : 'Fullscreen'}>
-              {isFS ? '⛶ Exit' : '⛶ Fullscreen'}
-            </button>
-            {!isFS && <button className={styles.closeBtn} onClick={onClose}>✕ Close</button>}
+
+          <div className={styles.divider} />
+          {!NO_DIFF.has(gameId) && <DiffSelector diff={diff} setDiff={setDiff} color={game?.color} />}
+
+          <div className={`${styles.gameArea} ${isFS ? styles.gameAreaFS : ''}`}>
+            {GameComponent
+              ? <GameComponent diff={diff} />
+              : <p className={styles.comingSoon}>Coming soon!</p>
+            }
           </div>
-        </div>
-        <div className={styles.divider} />
-        {!NO_DIFF.has(gameId) && <DiffSelector diff={diff} setDiff={setDiff} />}
-        <div className={`${styles.gameArea} ${isFS ? styles.gameAreaFS : ''}`}>
-          {GameComponent ? <GameComponent diff={diff} /> : <p className={styles.comingSoon}>Coming soon!</p>}
         </div>
       </div>
     </div>

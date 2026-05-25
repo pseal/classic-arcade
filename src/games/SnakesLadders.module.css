@@ -1,119 +1,95 @@
 .container { text-align: center; }
 
 .positions {
-  display: flex; gap: 0; justify-content: center; margin-bottom: 10px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px; overflow: hidden;
+  display: flex; gap: 0; margin-bottom: 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 18px; overflow: hidden;
 }
-
 .posCard {
-  flex: 1;
-  padding: 12px 20px; font-size: 14px; font-weight: 600;
-  border-right: 1px solid rgba(255,255,255,0.06);
-  display: flex; align-items: center; justify-content: center; gap: 8px;
+  flex: 1; padding: 12px 16px; font-size: 14px; font-weight: 600;
+  border-right: 1px solid rgba(255,255,255,0.05);
+  display: flex; align-items: center; justify-content: center; gap: 10px;
 }
 .posCard:last-child { border-right: none; }
+.posNum { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 800; }
 
-.posNum {
-  font-size: 22px; font-weight: 900;
-  font-family: 'Space Grotesk', sans-serif;
-}
-
-.scrollWrap { overflow-x: auto; margin-bottom: 10px; }
+.scrollWrap { overflow-x: auto; margin-bottom: 12px; }
 
 .board {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 3px;
-  margin: 0 auto;
-  width: fit-content;
-  padding: 10px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 20px;
+  display: grid; grid-template-columns: repeat(10, 1fr);
+  gap: 3px; margin: 0 auto; width: fit-content;
+  padding: 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 22px;
 }
 
 .cell {
   width: 46px; height: 46px;
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.06);
   display: flex; align-items: center; justify-content: center;
-  position: relative;
-  cursor: default;
-  font-size: 18px;
-  transition: transform 0.15s;
-  background: rgba(255,255,255,0.04);
+  position: relative; font-size: 18px;
+  background: rgba(255,255,255,0.03);
 }
 
 .cellNum {
-  position: absolute;
-  top: 2px; left: 4px;
-  font-size: 8px;
-  color: rgba(255,255,255,0.3);
-  font-weight: 700;
+  position: absolute; top: 2px; left: 4px;
+  font-size: 8px; color: rgba(255,255,255,0.25); font-weight: 700;
 }
 
 .tokens { display: flex; gap: 2px; align-items: center; justify-content: center; }
 
 .tokenP {
-  width: 18px; height: 18px;
-  border-radius: 50%;
+  width: 18px; height: 18px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: 9px; font-weight: 800; color: #fff;
-  background: #6c63ff;
-  box-shadow: 0 0 8px rgba(108,99,255,0.6);
+  background: #a78bfa;
+  box-shadow: 0 0 10px rgba(167,139,250,0.7);
 }
 .tokenC {
-  width: 18px; height: 18px;
-  border-radius: 50%;
+  width: 18px; height: 18px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: 9px; font-weight: 800; color: #fff;
-  background: #ef4444;
-  box-shadow: 0 0 8px rgba(239,68,68,0.6);
+  background: #f87171;
+  box-shadow: 0 0 10px rgba(248,113,113,0.7);
 }
 
 .controls {
-  display: flex; gap: 12px; justify-content: center;
+  display: flex; gap: 10px; justify-content: center;
   align-items: center; margin-bottom: 10px; flex-wrap: wrap;
 }
 
 .dice {
   font-size: 52px;
-  filter: drop-shadow(0 0 12px rgba(255,255,255,0.2));
-  animation: diceRoll 0.3s ease;
+  filter: drop-shadow(0 0 16px rgba(255,255,255,0.25));
+  animation: diceAppear 0.3s cubic-bezier(0.34,1.56,0.64,1);
 }
-
-@keyframes diceRoll {
-  0%   { transform: rotate(0deg) scale(0.8); }
-  50%  { transform: rotate(180deg) scale(1.2); }
-  100% { transform: rotate(360deg) scale(1); }
-}
+@keyframes diceAppear { from { transform: scale(0.5) rotate(-20deg); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 1; } }
 
 .rollBtn {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
   color: #fff; border: none; border-radius: 14px;
   padding: 12px 28px; font-size: 15px; font-weight: 700;
-  letter-spacing: 0.2px;
-  transition: all 0.2s;
-  box-shadow: 0 4px 20px rgba(108,99,255,0.3);
+  transition: all 0.2s; cursor: pointer; font-family: inherit;
+  box-shadow: 0 4px 20px rgba(124,58,237,0.35);
+  position: relative; overflow: hidden;
 }
-.rollBtn:hover:not(:disabled) { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(108,99,255,0.45); }
+.rollBtn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(255,255,255,0.15), transparent); pointer-events: none; }
+.rollBtn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(124,58,237,0.5); }
 
 .resetBtn {
-  background: rgba(255,255,255,0.07);
-  color: rgba(255,255,255,0.7);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 14px;
+  background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 14px;
   padding: 12px 22px; font-size: 14px; font-weight: 600;
-  transition: all 0.2s;
+  cursor: pointer; transition: all 0.2s; font-family: inherit;
 }
-.resetBtn:hover { background: rgba(255,255,255,0.12); color: #fff; transform: translateY(-1px); }
+.resetBtn:hover { background: rgba(255,255,255,0.09); color: #fff; transform: translateY(-1px); }
 
 .log { padding: 0 4px; }
 .logLine {
-  font-size: 12px; color: rgba(255,255,255,0.35);
+  font-size: 12px; color: rgba(255,255,255,0.3);
   text-align: center; margin-bottom: 3px;
-  padding: 4px 10px;
-  background: rgba(255,255,255,0.02);
-  border-radius: 6px;
+  padding: 4px 10px; background: rgba(255,255,255,0.02); border-radius: 8px;
 }

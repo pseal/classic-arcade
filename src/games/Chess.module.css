@@ -1,66 +1,45 @@
 .container { text-align: center; }
-
 .scrollWrap { overflow-x: auto; margin-bottom: 10px; }
 
 .boardWrap {
   display: inline-block;
   padding: 10px;
-  background: linear-gradient(145deg, #2a1f0a, #1a1200);
-  border-radius: 16px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 0 3px #8b6914, 0 0 0 4px rgba(0,0,0,0.5);
+  background: linear-gradient(145deg, #1c1008, #120b04);
+  border-radius: 18px;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.7),
+    0 0 0 2px #5a3d08,
+    0 0 0 4px rgba(0,0,0,0.5),
+    0 0 40px rgba(180,120,0,0.1);
 }
 
-.board {
-  display: inline-block;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.coordsRow { display: flex; }
-.coordLabel {
-  width: 20px; height: 20px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px; font-weight: 600;
-  color: rgba(255,215,100,0.5);
-}
-
+.board { display: inline-block; border-radius: 4px; overflow: hidden; }
 .boardRow { display: flex; }
 
 .square {
   width: 54px; height: 54px;
   display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  position: relative;
-  user-select: none;
-  transition: filter 0.1s;
+  cursor: pointer; position: relative;
+  user-select: none; transition: filter 0.1s;
 }
-.square:hover { filter: brightness(1.1); }
+.square:hover { filter: brightness(1.12); }
 
 .light { background: #f0d9b5; }
 .dark  { background: #b58863; }
 .selected { background: #f6f669 !important; box-shadow: inset 0 0 0 3px rgba(0,0,0,0.2); }
-
 .validMove::after {
-  content: '';
-  position: absolute;
-  width: 32%; height: 32%;
-  background: rgba(0,0,0,0.22);
-  border-radius: 50%;
+  content: ''; position: absolute;
+  width: 30%; height: 30%;
+  background: rgba(0,0,0,0.2); border-radius: 50%;
 }
-
 .validCapture { box-shadow: inset 0 0 0 4px rgba(0,0,0,0.3); }
-
 .piece { font-size: 30px; line-height: 1; }
 
 .resetBtn {
-  background: rgba(255,255,255,0.07);
-  color: rgba(255,255,255,0.7);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 12px;
-  padding: 10px 24px;
-  font-size: 14px; font-weight: 600;
-  transition: all 0.2s;
+  background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 14px;
+  padding: 10px 24px; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; font-family: inherit;
 }
-.resetBtn:hover { background: rgba(255,255,255,0.12); color: #fff; transform: translateY(-1px); }
-
-.hint { margin-top: 10px; font-size: 12px; color: rgba(255,255,255,0.25); }
+.resetBtn:hover { background: rgba(255,255,255,0.09); color: #fff; transform: translateY(-1px); }
+.hint { margin-top: 10px; font-size: 12px; color: rgba(255,255,255,0.2); }

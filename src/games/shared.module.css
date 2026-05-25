@@ -1,0 +1,61 @@
+/* Shared game button styles — import in each game */
+.btnPrimary {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 11px 26px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+}
+.btnPrimary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.15), transparent);
+  pointer-events: none;
+}
+.btnPrimary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,58,237,0.45); }
+
+.btnGhost {
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 11px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.btnGhost:hover { background: rgba(255,255,255,0.09); color: #fff; border-color: rgba(255,255,255,0.18); transform: translateY(-1px); }
+
+.scorePanel {
+  display: flex;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 18px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.scoreItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 10px;
+  gap: 4px;
+  border-right: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.2s;
+}
+.scoreItem:last-child { border-right: none; }
+.scoreItem:hover { background: rgba(255,255,255,0.03); }
+.scoreVal { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 800; line-height: 1; }
+.scoreLabel { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.7px; }
