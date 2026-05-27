@@ -141,3 +141,14 @@
   transition: all 0.2s; cursor: pointer;
 }
 .resetBtn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+@media (max-width: 480px) {
+  .card           { width: 48px; height: 68px; border-radius: 9px; }
+  .cardVal        { font-size: 14px; }
+  .cardCornerTL,
+  .cardCornerBR   { font-size: 7px; }
+  .playerHand,
+  .cpuHand        { gap: 4px; }
+  .table          { gap: 10px; padding: 10px; }
+  .colorIndicator { width: 40px; height: 40px; }
+}

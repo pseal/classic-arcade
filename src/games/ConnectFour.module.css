@@ -1,4 +1,4 @@
-.container { text-align: center; }
+.container { text-align: center; overflow-x: auto; }
 
 .scores {
   display: flex;
@@ -70,3 +70,14 @@
   transition: all 0.2s; margin-top: 10px; font-family: inherit;
 }
 .resetBtn:hover { background: rgba(255,255,255,0.09); color: #fff; transform: translateY(-1px); }
+
+@media (max-width: 480px) {
+  .cell  { width: 38px; height: 38px; }
+  .arrow { width: 38px; }
+}
+
+@media (max-width: 380px) {
+  .cell  { width: 32px; height: 32px; }
+  .arrow { width: 32px; }
+  .board { padding: 8px; }
+}

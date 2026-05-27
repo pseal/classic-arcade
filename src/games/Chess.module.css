@@ -43,3 +43,13 @@
 }
 .resetBtn:hover { background: rgba(255,255,255,0.09); color: #fff; transform: translateY(-1px); }
 .hint { margin-top: 10px; font-size: 12px; color: rgba(255,255,255,0.2); }
+
+@media (max-width: 480px) {
+  .square { width: 40px; height: 40px; }
+  .piece  { font-size: 22px; }
+}
+
+@media (max-width: 360px) {
+  .square { width: 34px; height: 34px; }
+  .piece  { font-size: 18px; }
+}

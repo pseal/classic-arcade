@@ -225,3 +225,15 @@
   .star, .arrowCell { font-size: 9px; }
   .colorBtn { width: 80px; height: 90px; }
 }
+
+@media (max-width: 600px) {
+  .cell         { width: 26px; height: 26px; }
+  .token        { width: 11px; height: 11px; }
+  .centerStar   { font-size: 14px; }
+  .star,
+  .arrowCell    { font-size: 8px; }
+  .colorBtn     { width: 72px; height: 80px; }
+  .colorBtnDot  { width: 28px; height: 28px; }
+  .diceWrap     { width: 54px; height: 54px; }
+  .dice         { font-size: 36px; }
+}

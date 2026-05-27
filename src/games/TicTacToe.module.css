@@ -98,3 +98,8 @@
   font-family: inherit;
 }
 .resetBtn:hover { background: rgba(255,255,255,0.09); color: #fff; transform: translateY(-1px); }
+
+@media (max-width: 400px) {
+  .grid   { max-width: 260px; gap: 6px; padding: 10px; }
+  .cell   { font-size: 38px; border-radius: 12px; }
+}

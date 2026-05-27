@@ -71,3 +71,9 @@
 .winBox h2  { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 800; }
 .winEmoji   { font-size: 56px; animation: float 1.5s ease-in-out infinite alternate; }
 @keyframes float { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+
+@media (max-width: 480px) {
+  .statsRow   { flex-direction: column; gap: 6px; align-items: center; }
+  .statMsg    { font-size: 12px; }
+  .boardWrap  { padding: 6px; }
+}

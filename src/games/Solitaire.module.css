@@ -141,3 +141,19 @@
 .resetBtn:hover { opacity: 0.9; transform: translateY(-1px); }
 
 .hint { font-size: 11px; color: rgba(255,255,255,0.25); text-align: center; }
+
+@media (max-width: 520px) {
+  .card, .emptyPile { width: 52px; height: 74px; }
+  .cardRank         { font-size: 11px; }
+  .cardCenter       { font-size: 20px; }
+  .topRow           { flex-wrap: wrap; gap: 6px; }
+  .statsBox         { display: none; } /* hide stats on very small screens */
+}
+
+@media (max-width: 420px) {
+  .card, .emptyPile { width: 42px; height: 60px; }
+  .cardRank         { font-size: 9px; }
+  .foundationArea   { gap: 3px; }
+  .tableau          { gap: 4px; }
+  .tableauCard      { margin-top: -72px !important; } /* tighter stacking */
+}

@@ -304,3 +304,14 @@
 .overlayTitle { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 800; }
 .overlaySub   { font-size: 14px; color: rgba(255,255,255,0.4); }
 .overlayBtns  { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+
+@media (max-width: 480px) {
+  .tile       { width: 36px; height: 46px; }
+  .tileGlyph  { font-size: 16px; }
+  .tileCat    { display: none; }
+  .tileInner  { width: 26px; height: 36px; }
+  .controls   { gap: 6px; }
+  .hintBtn,
+  .shuffleBtn,
+  .resetBtn   { padding: 8px 12px; font-size: 12px; }
+}
