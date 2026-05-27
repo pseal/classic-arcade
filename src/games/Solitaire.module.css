@@ -68,8 +68,8 @@
 
 /* ── Card ── */
 .card {
-  width: 62px;
-  height: 88px;
+  width: 72px;
+  height: 102px;
   border-radius: 9px;
   border: 1px solid rgba(255,255,255,0.12);
   cursor: pointer;
@@ -111,18 +111,18 @@
 
 .cardTop { display: flex; flex-direction: column; align-items: flex-start; line-height: 1; }
 .cardBot { display: flex; flex-direction: column; align-items: flex-end; line-height: 1; transform: rotate(180deg); }
-.cardRank { font-size: 12px; font-weight: 800; }
-.cardSuit { font-size: 10px; }
+.cardRank { font-size: 15px; font-weight: 800; }
+.cardSuit { font-size: 13px; }
 .cardCenter {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  font-size: 26px; opacity: 0.12; pointer-events: none;
+  font-size: 32px; opacity: 0.12; pointer-events: none;
 }
 
-.cardSmall { width: 52px; height: 74px; }
+.cardSmall { width: 62px; height: 88px; }
 
 .emptyPile {
-  width: 62px; height: 88px;
+  width: 72px; height: 102px;
   border-radius: 9px;
   border: 2px dashed rgba(255,255,255,0.1);
   background: rgba(255,255,255,0.02);

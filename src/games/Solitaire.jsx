@@ -235,7 +235,7 @@ export default function Solitaire() {
               : <span className={styles.stockCount}>{stock.length}</span>}
           </div>
           {waste.length > 0
-          ? <div style={{ position:'relative', width:62, height:88, flexShrink:0 }}>
+          ? <div style={{ position:'relative', width:110, height:102, flexShrink:0 }}>
               {waste.slice(-3).map((card, i, arr) => (
                 <div key={i} style={{ position:'absolute', top:0, left: i * 14, zIndex: i }}>
                   <SCard
