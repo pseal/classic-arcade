@@ -69,8 +69,14 @@ export default function Solitaire() {
       if (!s.stock.length) {
         return { ...s, stock: [...s.waste].reverse().map(c => ({ ...c, faceUp: false })), waste: [] }
       }
-      const card = { ...s.stock[s.stock.length - 1], faceUp: true }
-      return { ...s, stock: s.stock.slice(0, -1), waste: [...s.waste, card] }
+      // Draw up to 3 cards at once
+      const drawCount = Math.min(3, s.stock.length)
+      const drawn = s.stock.slice(-drawCount).reverse().map(c => ({ ...c, faceUp: true }))
+      return {
+        ...s,
+        stock: s.stock.slice(0, -drawCount),
+        waste: [...s.waste, ...drawn],
+      }
     })
     setSelected(null)
   }
@@ -229,8 +235,19 @@ export default function Solitaire() {
               : <span className={styles.stockCount}>{stock.length}</span>}
           </div>
           {waste.length > 0
-            ? <SCard card={waste[waste.length-1]} onClick={clickWaste} onAuto={() => autoFoundation(null,null,'waste')} sel={selected?.from==='waste'} />
-            : <div className={styles.emptyPile} onClick={() => setSelected(null)} />}
+          ? <div style={{ position:'relative', width:62, height:88, flexShrink:0 }}>
+              {waste.slice(-3).map((card, i, arr) => (
+                <div key={i} style={{ position:'absolute', top:0, left: i * 14, zIndex: i }}>
+                  <SCard
+                    card={card}
+                    onClick={i === arr.length - 1 ? clickWaste : undefined}
+                    onAuto={i === arr.length - 1 ? () => autoFoundation(null, null, 'waste') : undefined}
+                    sel={i === arr.length - 1 && selected?.from === 'waste'}
+                  />
+                </div>
+              ))}
+            </div>
+          : <div className={styles.emptyPile} onClick={() => setSelected(null)} />}
         </div>
 
         <div className={styles.foundationArea}>
@@ -277,7 +294,7 @@ export default function Solitaire() {
         ))}
       </div>
 
-      <div className={styles.hint}>Tap to select · Long-press or double-click to send to foundation</div>
+      <div className={styles.hint}>Draw 3 · Tap top waste card to select · Long-press to send to foundation</div>
 
       {won && (
         <div className={styles.winOverlay}>
