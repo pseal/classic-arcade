@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import styles from './Solitaire.module.css'
 
 // ── Card helpers ──────────────────────────────────────────────────────────
@@ -223,7 +223,7 @@ export default function Solitaire() {
 
   const { tableau, stock, waste, foundation } = state
 
-  const Card = ({ card, onClick, onDblClick, sel, faceDown, small }) => {
+  /*const Card = ({ card, onClick, onDblClick, sel, faceDown, small }) => {
     if (faceDown || !card.faceUp) return (
       <div className={`${styles.card} ${styles.cardBack} ${small ? styles.cardSmall : ''}`} onClick={onClick} />
     )
@@ -238,7 +238,41 @@ export default function Solitaire() {
         <div className={styles.cardBot}><span className={styles.cardRank}>{card.rank}</span><span className={styles.cardSuit}>{card.suit}</span></div>
       </div>
     )
+  }*/
+
+  const Card = ({ card, onClick, onDblClick, sel, faceDown, small }) => {
+  const pressTimer = useRef(null)
+
+  const handleTouchStart = () => {
+    pressTimer.current = setTimeout(() => {
+      if (onDblClick) onDblClick()
+    }, 500)
   }
+  const handleTouchEnd = () => {
+    clearTimeout(pressTimer.current)
+  }
+
+  if (faceDown || !card.faceUp) return (
+    <div className={`${styles.card} ${styles.cardBack} ${small ? styles.cardSmall : ''}`}
+      onClick={onClick}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    />
+  )
+  return (
+    <div
+      className={`${styles.card} ${isRed(card.suit) ? styles.cardRed : styles.cardBlack} ${sel ? styles.cardSelected : ''} ${small ? styles.cardSmall : ''}`}
+      onClick={onClick}
+      onDoubleClick={onDblClick}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      <div className={styles.cardTop}><span className={styles.cardRank}>{card.rank}</span><span className={styles.cardSuit}>{card.suit}</span></div>
+      <div className={styles.cardCenter}>{card.suit}</div>
+      <div className={styles.cardBot}><span className={styles.cardRank}>{card.rank}</span><span className={styles.cardSuit}>{card.suit}</span></div>
+    </div>
+  )
+}
 
   return (
     <div className={styles.container}>
@@ -288,7 +322,7 @@ export default function Solitaire() {
               ? <div className={styles.emptyPile} />
               : col.map((card, cardIdx) => (
                 <div key={cardIdx} className={styles.tableauCard}
-                  style={{ marginTop: cardIdx === 0 ? 0 : card.faceUp ? -70 : -85 }}>
+                  style={{ marginTop: cardIdx === 0 ? 0 : card.faceUp ? 'clamp(-85px, -14vw, -70px)' : 'clamp(-90px, -16vw, -85px)' }}>
                   <Card card={card}
                     onClick={() => clickTableau(colIdx, cardIdx)}
                     onDblClick={() => autoFoundation(colIdx, cardIdx, 'tableau')}

@@ -143,17 +143,20 @@
 .hint { font-size: 11px; color: rgba(255,255,255,0.25); text-align: center; }
 
 @media (max-width: 520px) {
-  .card, .emptyPile { width: 52px; height: 74px; }
+  .card, .emptyPile { width: 54px; height: 76px; }
   .cardRank         { font-size: 11px; }
-  .cardCenter       { font-size: 20px; }
+  .cardCenter       { font-size: 18px; }
   .topRow           { flex-wrap: wrap; gap: 6px; }
-  .statsBox         { display: none; } /* hide stats on very small screens */
+  .statsBox         { display: none; }
+  .tableau          { gap: 5px; padding: 0 2px; }
 }
 
-@media (max-width: 420px) {
-  .card, .emptyPile { width: 42px; height: 60px; }
+@media (max-width: 400px) {
+  .card, .emptyPile { width: 44px; height: 62px; }
   .cardRank         { font-size: 9px; }
+  .cardSuit         { font-size: 8px; }
+  .cardCenter       { font-size: 14px; }
   .foundationArea   { gap: 3px; }
-  .tableau          { gap: 4px; }
-  .tableauCard      { margin-top: -72px !important; } /* tighter stacking */
+  .stockArea        { gap: 4px; }
+  .tableau          { gap: 3px; }
 }
