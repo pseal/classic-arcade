@@ -271,3 +271,9 @@
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+
+@media (max-width: 360px) {
+  .grid       { grid-template-columns: 1fr; padding: 0 12px; }
+  .title      { font-size: 28px; }
+  .logoEmoji  { font-size: 52px; }
+}

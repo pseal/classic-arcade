@@ -218,3 +218,9 @@
   color: rgba(255,255,255,0.25);
   font-size: 18px;
 }
+
+@media (max-width: 600px) {
+  .modalInner, .modalInnerFS {
+    padding: 10px 12px 12px;
+  }
+}
