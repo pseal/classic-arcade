@@ -204,18 +204,19 @@ export default function Chess({ diff }) {
                     onClick={() => handleSquare(r, c)}
                   >
                     {piece && (
-                      <span
-                        className={styles.piece}
-                        style={piece[0] === 'w' ? {
-                          color: '#fff',
-                          textShadow: '-1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, 1px 1px 0 #333, 0 2px 4px rgba(0,0,0,0.5)',
-                        } : {
-                          color: '#1a1a1a',
-                          textShadow: '0 1px 3px rgba(0,0,0,0.25)',
-                        }}
-                      >
-                        {UNICODE[piece]}
-                      </span>
+                      <div style={{
+                        width: 38, height: 38,
+                        borderRadius: '50%',
+                        background: piece[0] === 'w' ? 'rgba(255,255,255,0.92)' : 'rgba(20,20,30,0.85)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        boxShadow: piece[0] === 'w'
+                          ? '0 2px 6px rgba(0,0,0,0.4)'
+                          : '0 2px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)',
+                      }}>
+                        <span className={styles.piece} style={{ color: piece[0] === 'w' ? '#1a1a2e' : '#f0f0f0' }}>
+                          {UNICODE[piece]}
+                        </span>
+                      </div>
                     )}
                   </div>
                 )
