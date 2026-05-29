@@ -208,13 +208,10 @@ export default function Chess({ diff }) {
                         className={styles.piece}
                         style={piece[0] === 'w' ? {
                           color: '#fff',
-                          WebkitTextStroke: '1.5px #1a1a1a',
-                          paintOrder: 'stroke fill',
-                          filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))',
+                          textShadow: '-1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, 1px 1px 0 #333, 0 2px 4px rgba(0,0,0,0.5)',
                         } : {
                           color: '#1a1a1a',
-                          WebkitTextStroke: '0.5px #000',
-                          filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))',
+                          textShadow: '0 1px 3px rgba(0,0,0,0.25)',
                         }}
                       >
                         {UNICODE[piece]}
